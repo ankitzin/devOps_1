@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  terraform:
+    build:
+      context: .
+      dockerfile: terraform.dockerfile
+  website:
+    build:
+      context: .
+    ports:
+      - 80:80
+  unit-tests:
+    build:
+      dockerfile: rspec.dockerfile
+      context: .
+    volumes:
+      - $PWD:/app
+  terraform-work:
+    build:
+      dockerfile: terraform.dockerfile
+      context: .
+    
